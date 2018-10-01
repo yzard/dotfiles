@@ -1,0 +1,178 @@
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'w0rp/ale'
+"Plugin 'airblade/vim-gitgutter'
+"Plugin 'davidhalter/jedi-vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line))))
+"
+
+" vim airline configurations
+let g:airline_theme = 'badwolf'
+"let g:airline_section_b = '%{strftime("%c")}'
+"let g:airline_section_y = 'BN: %{bufnr("%")}'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_powerline_fonts = 1 "consolas font need be patched
+
+" YouCompleteMe configurations
+let g:ycm_python_binary_path = 'python'
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+map <c-d> :YcmCompleter GoToDefinition<CR>
+map <c-e> :YcmCompleter GoToDeclaration<CR>
+
+" ale flake8 configs
+let b:ale_linters = ['flake8']
+let g:ale_python_flake8_options="--ignore=E501,E221,E251,E265,E702,E202,E203,E201,E241,E722,E128"
+
+" general configurations
+syntax on
+scriptencoding utf-8
+
+" Fix some keyboard arrowkey shit
+set nocompatible
+
+" Show line number
+set number
+set encoding=utf-8
+set fileencodings=ucs-bom,gb18030,big-5,utf-8
+set showtabline=2
+set smarttab
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set dir=/tmp/
+
+" Highlight Search, shown keyword immediately
+set hlsearch
+set incsearch
+
+set backspace=2
+
+" Set the status bar
+set laststatus=2
+"set statusline=%y\ %F\ [%{&ff}]\ %m%r%w%=%p%%\ L=%l/%L\ C=%03v\ [ASCII:\ \%03.3b,\ 0x\%02.2B]
+
+" Set autoindent
+set autoindent
+set cindent
+
+" Mapping key
+map <c-n> 	:tabnew<CR>
+
+" ctrl left
+map <c-h>	:tabprevious<CR>
+map <ESC>[D	:tabprevious<CR>
+
+" ctrl right
+map <c-l>	:tabnext<CR>
+map <ESC>[C	:tabnext<CR>
+
+" Mapping command to prevent mistake, save time
+command Q q
+command -nargs=1 E e <args>
+command W w
+
+" set color scheme
+colorscheme koehler
+
+" Auto completion of symbols
+:inoremap ( 		()<ESC>i
+:inoremap {<CR> 	{<CR>}<ESC>O
+:inoremap [ 		[]<ESC>i
+:inoremap /*<Space>	/*<Space><Space>*/<Left><Left>
+:inoremap /*<CR>	/*<CR>*/<ESC>O
+
+" Open the file, reset the focus position according to the last closed files
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+" Tags
+set tags=./tags,./TAGS,tags,TAGS
+set tags+=~/.vim/tags/libstdc++.tags
+
+" color diffs
+"highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+"highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+"highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+"highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+" Load template
+autocmd! BufNewFile *.h call LoadTemplate(@%, 'h')
+autocmd! BufNewFile *.cpp call LoadTemplate(@%, 'cpp')
+autocmd! BufNewFile *.py call LoadTemplate(@%, 'py')
+autocmd! BufNewFile main.cpp call LoadTemplate(@%, 'main.cpp')
+
+function LoadTemplate(filename, type)
+        let filename = split(a:filename, '\/')[-1]
+        let type = a:type
+        let name = split(filename, '\.', 1)[0]
+
+        " get header file name
+        let header_file = name . '.h'
+
+        " get class name
+        let class_name = substitute(name, '^[a-z]', '\U\0', '')
+
+        " get capitalized file name
+        let macro_name = substitute(filename, '.*', '\U\0', '')
+        let macro_name = substitute(macro_name, '\.', '_', '')
+
+        " get skeleton file
+        let template_path = '~/.vim/skel/'
+        let template_file = template_path . 'skeleton.' . type
+
+        " check if template_file exists
+
+        " read
+        let cmd = '0 read ' . template_file
+        exec cmd
+
+        " replace name
+        call Replace('%CLASS_NAME%', class_name)
+        call Replace('%MACRO_NAME%', macro_name)
+        call Replace('%HEADER_FILE%', header_file)
+
+endfunction
+
+function! Replace(old, new)
+        let cmd = '%substitute/' . a:old . '/' . a:new . '/ge'
+        exec cmd
+endfunction
+
+
