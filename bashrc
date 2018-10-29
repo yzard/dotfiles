@@ -1,4 +1,4 @@
-export EDITOR="vim"
+export EDITOR="vi"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -13,7 +13,6 @@ alias ls="ls --color=always"
 alias sl="ls"
 alias ll="ls -al"
 alias lg="cat /var/log/messages | tail -n 30"
-alias vi="vim"
 alias gv="gvim"
 
 alias gir="grep -ir"
@@ -25,6 +24,8 @@ alias pgp="ps -ef | grep"
 alias fngrp="find . | xargs -n 512 grep"
 
 alias less="less -R"
+
+alias rsync="rsync -avz --progress"
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
