@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source ./installation/vim.sh
+source ./software/vim.sh
