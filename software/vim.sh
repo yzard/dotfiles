@@ -38,6 +38,8 @@ sudo update-alternatives --set editor /usr/local/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 sudo update-alternatives --set vi /usr/local/bin/vim
 
+[ -d ~/.vim ] && mv ~/.vim ~/bak/ 
+
 [ -d ~/.vim/bundle/ ] && rm ~/.vim/bundle
 
 mkdir ~/.vim/bundle/
