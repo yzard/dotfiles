@@ -8,6 +8,9 @@ sudo apt install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
 
 sudo apt remove -y vim vim-runtime gvim
 
+[ -d ~/.vim ] && mv ~/.vim ~/bak/ 
+cp -pr vim ~/.vim
+
 mkdir ~/tmp/
 cd ~/tmp
 sudo rm -rf vim
@@ -37,12 +40,6 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
 sudo update-alternatives --set editor /usr/local/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 sudo update-alternatives --set vi /usr/local/bin/vim
-
-[ -d ~/.vim ] && mv ~/.vim ~/bak/ 
-
-[ -d ~/.vim/bundle/ ] && rm ~/.vim/bundle
-
-mkdir ~/.vim/bundle/
 
 git clone git@github.com:VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
