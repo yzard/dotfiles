@@ -1,3 +1,9 @@
 #!/bin/bash
 
-source ./software/vim.sh
+cd software
+
+for i in *.sh;
+do
+    echo "Execting $i"
+    source $i
+done

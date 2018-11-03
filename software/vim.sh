@@ -34,7 +34,7 @@ make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
 sudo apt install -y checkinstall
 cd ~/tmp/vim
-sudo checkinstall
+sudo checkinstall -y
 
 sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
 sudo update-alternatives --set editor /usr/local/bin/vim
