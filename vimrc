@@ -58,7 +58,7 @@ map <c-e> :YcmCompleter GoToDeclaration<CR>
 
 " ale flake8 configs
 let b:ale_linters = ['flake8']
-let g:ale_python_flake8_options="--ignore=E501,E221,E251,E265,E702,E202,E203,E201,E241,E722,E128"
+let g:ale_python_flake8_options="--max-line-length=120"
 
 " general configurations
 syntax on
@@ -137,6 +137,9 @@ autocmd! BufNewFile *.h call LoadTemplate(@%, 'h')
 autocmd! BufNewFile *.cpp call LoadTemplate(@%, 'cpp')
 autocmd! BufNewFile *.py call LoadTemplate(@%, 'py')
 autocmd! BufNewFile main.cpp call LoadTemplate(@%, 'main.cpp')
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 function LoadTemplate(filename, type)
         let filename = split(a:filename, '\/')[-1]

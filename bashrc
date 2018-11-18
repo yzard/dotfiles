@@ -23,14 +23,15 @@ alias pgp="ps -ef | grep"
 
 alias fngrp="find . | xargs -n 512 grep"
 
-alias less="less -R"
-
 alias rsync="rsync -avz --progress"
+
+export LESS='-R'
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
-export PATH="/opt/miniconda/bin:$PATH"
+export PATH="/opt/miniconda2/bin:$PATH"
+export PATH="/home/zyin/miniconda2/bin:$PATH"
 export PATH="/home/zyin/dev/ivm/utils:$PATH"
 
 export LD_LIBRARY_PATH='/usr/local/lib:/usr/lib'
@@ -56,14 +57,6 @@ export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
           -c 'set showtabline=0' \
           -c 'set nonumber' \
               -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
-
-export GIT_PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-              vim -R -c 'set ft=nomod nolist' \
-          -c 'set syntax=diff' \
-          -c 'set showtabline=0' \
-          -c 'set nonumber' \
-          -c 'map q :q<CR>' \
-              -c 'map <SPACE> <C-D>' -c 'map b <C-U>' -\""
 
 if [ -n "$STY" ];
 then 
