@@ -30,6 +30,7 @@ export LESS='-R'
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
+export PATH="/opt/miniconda/bin:$PATH"
 export PATH="/opt/miniconda2/bin:$PATH"
 export PATH="/home/zyin/miniconda2/bin:$PATH"
 export PATH="/home/zyin/dev/ivm/utils:$PATH"
