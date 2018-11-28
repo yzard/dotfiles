@@ -52,12 +52,8 @@ case ${TERM} in
 esac
 
 # Use VIm as man pager
-export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-              vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-              -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-          -c 'set showtabline=0' \
-          -c 'set nonumber' \
-              -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+export GIT_PAGER="less"
+export PAGER="less"
 
 if [ -n "$STY" ];
 then 
