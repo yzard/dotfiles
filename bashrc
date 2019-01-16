@@ -64,3 +64,5 @@ then
 else
     export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m:\e[32m\w\e[m\n$ "
 fi
+
+source activate conda
