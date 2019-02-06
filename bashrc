@@ -34,6 +34,7 @@ export PATH="/opt/miniconda/bin:$PATH"
 export PATH="/opt/miniconda2/bin:$PATH"
 export PATH="/home/zyin/miniconda2/bin:$PATH"
 export PATH="/home/zyin/dev/ivm/utils:$PATH"
+export PATH="/home/zyin/bin:$PATH"
 
 export LD_LIBRARY_PATH='/usr/local/lib:/usr/lib'
 
@@ -65,4 +66,4 @@ else
     export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m:\e[32m\w\e[m\n$ "
 fi
 
-source activate conda
+# source activate conda

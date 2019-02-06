@@ -14,4 +14,4 @@ mv .tmux.conf bak/.tmux.conf
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
 mv .gitconfig bak/.gitconfig
-ls -s ~/dotfiles/gitconfig ~/.gitconfig
+ln -s ~/dotfiles/gitconfig ~/.gitconfig
