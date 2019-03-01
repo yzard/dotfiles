@@ -35,6 +35,7 @@ export PATH="/opt/miniconda2/bin:$PATH"
 export PATH="/home/zyin/miniconda2/bin:$PATH"
 export PATH="/home/zyin/dev/ivm/utils:$PATH"
 export PATH="~/utilities:$PATH"
+export PATH="~/.local/bin:$PATH"
 
 export LD_LIBRARY_PATH='/usr/local/lib:/usr/lib'
 
