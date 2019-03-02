@@ -9,7 +9,12 @@ alias c="cat"
 alias g="grep"
 alias s="ssh -Y"
 
-alias ls="ls --color=always"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias ls="ls --color=always"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    alias ls="ls -G"
+fi
+
 alias sl="ls"
 alias ll="ls -al"
 alias lg="cat /var/log/messages | tail -n 30"
