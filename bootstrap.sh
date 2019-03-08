@@ -15,3 +15,5 @@ ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
 mv .gitconfig bak/.gitconfig
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
+
+crontab ~/dotfiles/crontab
