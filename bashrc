@@ -2,6 +2,8 @@ export EDITOR="vi"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+export HISTSIZE=10000
+export HISTFILESIZE=20000
 
 alias l="ls"
 alias k="kill -9"
