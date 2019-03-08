@@ -2,8 +2,6 @@ export EDITOR="vi"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export HISTSIZE=10000
-export HISTFILESIZE=20000
 
 alias l="ls"
 alias k="kill -9"
@@ -37,17 +35,19 @@ export LESS='-R'
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
-export PATH="/opt/miniconda/bin:$PATH"
-export PATH="/opt/miniconda2/bin:$PATH"
-export PATH="/home/zyin/miniconda2/bin:$PATH"
 export PATH="/home/zyin/dev/ivm/utils:$PATH"
 export PATH="~/utilities:$PATH"
 export PATH="~/.local/bin:$PATH"
 
 export LD_LIBRARY_PATH='/usr/local/lib:/usr/lib'
 
+export PYTHONPATH="~/dev/ivm"
+
 export EDITOR="vim"
+
 export HISTCONTROL=ignoredups
+export HISTSIZE=10000
+export HISTFILESIZE=20000
 
 export TERM="xterm-256color"
 
@@ -74,4 +74,9 @@ else
     export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m:\e[32m\w\e[m\n$ "
 fi
 
-# source activate conda
+
+if [ -f /opt/miniconda3/etc/profile.d/conda.sh ]
+then
+    source /opt/miniconda3/etc/profile.d/conda.sh
+    conda activate
+fi
