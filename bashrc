@@ -1,13 +1,7 @@
-export EDITOR="vi"
+export EDITOR="vim"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-
-alias l="ls"
-alias k="kill -9"
-alias c="cat"
-alias g="grep"
-alias s="ssh -Y"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias ls="ls --color=always"
@@ -16,17 +10,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 alias sl="ls"
-alias ll="ls -al"
-alias lg="cat /var/log/messages | tail -n 30"
+alias ll="ls -alh"
 alias gv="gvim"
 
-alias gir="grep -ir"
-alias lsg="ls | grep"
-alias rst="reset"
-alias clr="clear"
-alias pgp="ps -ef | grep"
-
-alias fngrp="find . | xargs -n 512 grep"
+alias fgrp="find . | xargs -n 512 grep"
 
 alias rsync="rsync -avz --progress"
 
