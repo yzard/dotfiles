@@ -9,7 +9,7 @@ sudo apt install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
 sudo apt remove -y vim vim-runtime gvim
 
 [ -d ~/.vim ] && mv ~/.vim ~/bak/ 
-cp -pr vim ~/.vim
+cp -pr vim/* ~/.vim/
 
 mkdir ~/tmp/
 cd ~/tmp
