@@ -9,7 +9,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias ls="ls -G"
 fi
 
-alias vim="vi"
+alias vi="vim"
 alias sl="ls"
 alias ll="ls -alh"
 alias gv="gvim"

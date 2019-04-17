@@ -1,9 +1,7 @@
 #!/bin/bash
 
-cd software
-
-for i in *.sh;
+for i in `ls software`;
 do
-    echo "Execting $i"
-    source $i
+    command="source software/$i/install.sh"
+    echo "Execting $command" && eval $command
 done
