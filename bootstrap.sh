@@ -1,19 +1,15 @@
 #!/bin/sh
 
-cd ~/
+[ ! -d ~/bak ] && mkdir bak/
 
-mkdir bak/
+for file in `ls ~/dotfiles/configs`;
+do
+    dotfile=".${file}"
 
-mv .bashrc bak/.bashrc
-ln -s ~/dotfiles/bashrc ~/.bashrc
+    [ -L ~/${dotfile} ] && unlink ~/${dotfile}
+    [ -f ~/${dotfile} ] && mv ~/${dotfile} bak/
 
-mv .vimrc bak/.vimrc
-ln -s ~/dotfiles/vimrc ~/.vimrc
-
-mv .tmux.conf bak/.tmux.conf
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-
-mv .gitconfig bak/.gitconfig
-ln -s ~/dotfiles/gitconfig ~/.gitconfig
+    ln -s ~/dotfiles/configs/${file} ~/${dotfile}
+done
 
 crontab ~/dotfiles/crontab
