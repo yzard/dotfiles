@@ -60,7 +60,10 @@ else
     export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m:\e[32m\w\e[m\n$ "
 fi
 
-. /home/zyin/miniconda3/etc/profile.d/conda.sh
-conda activate
+if [ -f /home/zyin/miniconda3/etc/profile.d/conda.sh ]
+then
+    . /home/zyin/miniconda3/etc/profile.d/conda.sh
+    conda activate
+fi
 
 export PYTHONPATH="/home/zyin/dev/ivm"
