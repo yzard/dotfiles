@@ -11,5 +11,3 @@ do
 
     ln -s ~/dotfiles/configs/${file} ~/${dotfile}
 done
-
-crontab ~/dotfiles/crontab
