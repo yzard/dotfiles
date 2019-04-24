@@ -69,4 +69,8 @@ then
     conda activate
 fi
 
-export PYTHONPATH="/home/zyin/dev/ivm"
+if [ -f /opt/miniconda3/etc/profile.d/conda.sh ]
+then
+    . /opt/miniconda3/etc/profile.d/conda.sh
+    conda activate
+fi
