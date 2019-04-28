@@ -1,6 +1,11 @@
+xterm*utf8: true
+
 xterm*background: black
 xterm*foreground: white
 
 !right hand side scrollbar
 xterm*ScrollBar: true
 xterm*rightScrollBar: true
+
+!true, CJK text column width of 2
+xterm*cjkWidth: true

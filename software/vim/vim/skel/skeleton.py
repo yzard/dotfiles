@@ -13,7 +13,7 @@ class %CLASS_NAME%(object):
 
 def get_args():
     parser = argparse.ArgumentParser
-    parser = argparse.ArgumentParser(description='%CLASS_NAME',
+    parser = argparse.ArgumentParser(description='%CLASS_NAME%',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-f", "--file", help="specify file name") 
     parser.add_argument("leftover", nargs="*")
