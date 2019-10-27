@@ -70,7 +70,7 @@ set nocompatible
 " Show line number
 set number
 set encoding=utf-8
-set fileencodings=ucs-bom,gb18030,big-5,utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,big-5
 set showtabline=2
 set smarttab
 set expandtab
