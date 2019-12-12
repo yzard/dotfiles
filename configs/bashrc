@@ -9,9 +9,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias ls="ls -G"
 fi
 
+alias ls="ls --block-size=\'1 --color=auto"
+alias l="ls -al"
 alias vi="vim"
 alias sl="ls"
-alias ll="ls -alh"
 alias gv="gvim"
 
 alias fgrp="find . | xargs -n 512 grep"
@@ -23,7 +24,6 @@ export LESS='-R'
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
-export PATH="~/utilities:$PATH"
 export PATH="~/.local/bin:$PATH"
 
 export LD_LIBRARY_PATH='/usr/local/lib:/usr/lib'
