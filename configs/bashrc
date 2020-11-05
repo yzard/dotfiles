@@ -19,6 +19,8 @@ alias fgrp="find . | xargs -n 512 grep"
 
 alias rsync="rsync -avz --progress"
 
+alias black="black -l 120"
+
 export LESS='-R'
 
 export PATH="/usr/local/bin:$PATH"
