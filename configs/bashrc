@@ -72,14 +72,13 @@ function _ps1_tty () {
     fi
 }
 
-
 case ${SHELL} in
-    /bin/bash)
-        PS1="$(_color $LT_YELLOW '\t \d'): $(_color $LT_RED '\u')@$(_color $LT_CYAN '\H'):$(_color $LT_GREEN '\w') $(_ps1_tty)\n$ "
-        ;;
-    /bin/zsh)
-        set PROMPT_SUBST
-        PROMPT="$(_color $LT_YELLOW '%* %D{%Y-%m-%d %a}') $(_color $LT_RED '%n')@$(_color $LT_CYAN '%m'):$(_color $LT_GREEN '%d') $(_ps1_tty)"$'\n'"$ "
-        ;;
+/bin/bash)
+    PS1="$(_color $LT_YELLOW '$(date +'%Y-%m-%d') \t') $(_color $LT_RED '\u')@$(_color $LT_CYAN '\H'):$(_color $LT_GREEN '\w') $(_ps1_tty)\n$ "
+    ;;
+/bin/zsh)
+    set PROMPT_SUBST
+    PROMPT="$(_color $LT_YELLOW '%D{%Y-%m-%d %H:%M:%S}') $(_color $LT_RED '%n')@$(_color $LT_CYAN '%m'):$(_color $LT_GREEN '%d') $(_ps1_tty)"$'\n'"$ "
+    ;;
 esac
 
