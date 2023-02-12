@@ -65,10 +65,10 @@ function _color () {
 function _ps1_tty () {
     if [ -n "$STY" ];
     then
-        echo " (screen)"
+        echo "(screen)"
     elif [ -n "$TMUX" ];
     then
-        echo " (tmux)"
+        echo "(tmux)"
     else
         echo ""
     fi
