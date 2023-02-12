@@ -4,12 +4,11 @@ export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    alias ls="ls --color=always"
+    alias ls="ls --block-size=\'1 --color=always"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias ls="ls -G"
 fi
 
-alias ls="ls --block-size=\'1 --color=auto"
 alias l="ls -al"
 alias vi="vim"
 alias sl="ls"
@@ -27,6 +26,10 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="${HOME}/.local/bin:$PATH"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib"
 
@@ -54,13 +57,28 @@ esac
 export GIT_PAGER="less"
 export PAGER="less"
 
-if [ -n "$STY" ];
-then 
-    export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m (screen):\e[32m\w\e[m\n$ "
-elif [ -n "$TMUX" ];
-then 
-    export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m (tmux):\e[32m\w\e[m\n$ "
-else
-    export PS1="\e[33m\t \d\e[m : \e[31m\u\e[m@\e[36m\H\e[m:\e[32m\w\e[m\n$ "
-fi
 
+function _color () {
+    echo "\e[0;$1m$2\e[0m"
+}
+
+function _ps1_tty () {
+    if [ -n "$STY" ];
+    then
+        echo " (screen)"
+    elif [ -n "$TMUX" ];
+    then
+        echo " (tmux)"
+    else
+        echo ""
+    fi
+}
+
+if [ $SHELL = "/bin/bash" ];
+then
+    PS1="$(_color 33 '\t \d'): $(_color 31 '\u')@$(_color 36 '\H'):$(_color 32 '\w') $(_ps1_tty)\n$ "
+elif [ $SHELL = "/bin/zsh" ];
+then
+    set PROMPT_SUBST
+    PROMPT="$(_color 33 '%* %D{%Y-%m-%d %a}') $(_color 31 '%n')@$(_color 36 '%m'):$(_color 32 '%d') $(_ps1_tty)"$'\n'"$ "
+fi
