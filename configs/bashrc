@@ -44,19 +44,17 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-case ${TERM} in
-    xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix)
-        export PROMPT_COMMAND='echo -ne "\033];${USER}@${HOSTNAME%%.*}\007"'
-        ;;
-    screen)
-        export PROMPT_COMMAND='echo -ne "\033];${USER}@${HOSTNAME%%.*} (screen)\007"'
-        ;;
-esac
-
 # Use VIm as man pager
 export GIT_PAGER="less"
 export PAGER="less"
 
+
+LT_RED=91
+LT_GREEN=92
+LT_YELLOW=93
+LT_BLUE=94
+LT_MAGENTA=95
+LT_CYAN=96
 
 function _color () {
     echo "\e[0;$1m$2\e[0m"
@@ -74,11 +72,14 @@ function _ps1_tty () {
     fi
 }
 
-if [ $SHELL = "/bin/bash" ];
-then
-    PS1="$(_color 33 '\t \d'): $(_color 31 '\u')@$(_color 36 '\H'):$(_color 32 '\w') $(_ps1_tty)\n$ "
-elif [ $SHELL = "/bin/zsh" ];
-then
-    set PROMPT_SUBST
-    PROMPT="$(_color 33 '%* %D{%Y-%m-%d %a}') $(_color 31 '%n')@$(_color 36 '%m'):$(_color 32 '%d') $(_ps1_tty)"$'\n'"$ "
-fi
+
+case ${SHELL} in
+    /bin/bash)
+        PS1="$(_color $LT_YELLOW '\t \d'): $(_color $LT_RED '\u')@$(_color $LT_CYAN '\H'):$(_color $LT_GREEN '\w') $(_ps1_tty)\n$ "
+        ;;
+    /bin/zsh)
+        set PROMPT_SUBST
+        PROMPT="$(_color $LT_YELLOW '%* %D{%Y-%m-%d %a}') $(_color $LT_RED '%n')@$(_color $LT_CYAN '%m'):$(_color $LT_GREEN '%d') $(_ps1_tty)"$'\n'"$ "
+        ;;
+esac
+
