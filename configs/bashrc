@@ -1,4 +1,5 @@
 export EDITOR="vim"
+export BROWSER="/usr/bin/google-chrome-stable"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -40,10 +41,6 @@ export HISTSIZE=10000
 export HISTFILESIZE=20000
 export TERM="xterm-256color"
 
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
 # Use VIm as man pager
 export GIT_PAGER="less"
 export PAGER="less"
@@ -73,12 +70,22 @@ function _ps1_tty () {
 }
 
 case ${SHELL} in
-/bin/bash)
+*"/bash")
     PS1="$(_color $LT_YELLOW '$(date +'%Y-%m-%d') \t') $(_color $LT_RED '\u')@$(_color $LT_CYAN '\H'):$(_color $LT_GREEN '\w') $(_ps1_tty)\n$ "
     ;;
-/bin/zsh)
+*"/zsh")
     set PROMPT_SUBST
     PROMPT="$(_color $LT_YELLOW '%D{%Y-%m-%d %H:%M:%S}') $(_color $LT_RED '%n')@$(_color $LT_CYAN '%m'):$(_color $LT_GREEN '%d') $(_ps1_tty)"$'\n'"$ "
     ;;
 esac
 
+
+sysinfo_cmd=`command -v fastfetch`
+if [ -n "${sysinfo_cmd}" ];
+then
+    eval ${sysinfo_cmd};
+fi
+
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export XMODIFIERS=@im=fcitx

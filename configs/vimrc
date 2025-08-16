@@ -121,60 +121,14 @@ colorscheme koehler
 " Open the file, reset the focus position according to the last closed files
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-" Tags
-set tags=./tags,./TAGS,tags,TAGS
-set tags+=~/.vim/tags/libstdc++.tags
-
 " color diffs
 "highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 "highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 "highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 "highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
-" Load template
-autocmd! BufNewFile *.h call LoadTemplate(@%, 'h')
-autocmd! BufNewFile *.cpp call LoadTemplate(@%, 'cpp')
-autocmd! BufNewFile *.py call LoadTemplate(@%, 'py')
-autocmd! BufNewFile main.cpp call LoadTemplate(@%, 'main.cpp')
-
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-function LoadTemplate(filename, type)
-        let filename = split(a:filename, '\/')[-1]
-        let type = a:type
-        let name = split(filename, '\.', 1)[0]
-
-        " get header file name
-        let header_file = name . '.h'
-
-        " get class name
-        let class_name = substitute(name, '^[a-z]', '\U\0', '')
-
-        " get capitalized file name
-        let macro_name = substitute(filename, '.*', '\U\0', '')
-        let macro_name = substitute(macro_name, '\.', '_', '')
-
-        " get skeleton file
-        let template_path = '~/.vim/skel/'
-        let template_file = template_path . 'skeleton.' . type
-
-        " check if template_file exists
-
-        " read
-        let cmd = '0 read ' . template_file
-        exec cmd
-
-        " replace name
-        call Replace('%CLASS_NAME%', class_name)
-        call Replace('%MACRO_NAME%', macro_name)
-        call Replace('%HEADER_FILE%', header_file)
-
-endfunction
-
-function! Replace(old, new)
-        let cmd = '%substitute/' . a:old . '/' . a:new . '/ge'
-        exec cmd
-endfunction
-
-
+set mouse=a
+set clipboard=unnamed
